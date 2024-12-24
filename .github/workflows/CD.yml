@@ -1,0 +1,45 @@
+name: Django CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [ 3.12 ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run migrations
+        run: python manage.py migrate
+      - name: Run Tests
+        run: |
+          python manage.py test
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Connecting to Digital ocean via ssh
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: ${{secrets.HOST}}
+          username: root
+          key: ${{secrets.KEY}} # servers private ssh key, public will add in known host itself (make new ssh)
+          script: |
+            cd /var/www/netflix/
+            sleep 1
+            git pull origin main
+            sudo systemctl restart gunicorn
