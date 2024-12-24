@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&5%t80+(+7=md3umx#732x4rayxof5vla0kvyufcvpr7b+p&nt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['netflix.ruslanbek.com']
 
