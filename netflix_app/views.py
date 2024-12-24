@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -82,3 +83,5 @@ class CommentAPIView(APIView):
 
 
 
+def greet(request):
+    return HttpResponse('Hello, World!')
