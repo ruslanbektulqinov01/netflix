@@ -3,7 +3,6 @@ from django.urls import path, include
 from .views import MovieViewSet, ActorViewSet, MovieActorAPIView, CommentAPIView
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
-from .views import greet
 
 router = DefaultRouter()
 router.register('movies', MovieViewSet)
@@ -15,5 +14,4 @@ urlpatterns = [
     path('comments/', CommentAPIView.as_view(), name='comments'),
     path('comments/<int:pk>/', CommentAPIView.as_view(), name='comments'),
     path('auth/', obtain_auth_token, name='auth-token'),
-    path('hello/', greet, name='greet')
 ]
