@@ -79,9 +79,3 @@ class CommentAPIView(APIView):
         comment = get_object_or_404(Comment, pk=pk)
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-
-
-
-def greet(request):
-    return HttpResponse('Hello, Ruslanbek!')
