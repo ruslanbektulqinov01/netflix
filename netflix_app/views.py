@@ -84,4 +84,4 @@ class CommentAPIView(APIView):
 
 
 def greet(request):
-    return HttpResponse('Hello, World!')
+    return HttpResponse('Hello, Ruslanbek!')
