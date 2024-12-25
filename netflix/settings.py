@@ -96,10 +96,10 @@ load_dotenv()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('POSTGRES_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': 'localhost',
+        'NAME': os.getenv('POSTGRES_DB', 'netflix_db'),      # o'zgardi
+        'USER': os.getenv('POSTGRES_USER', 'netflix_user'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'netflix_password'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),     # env dan olish
         'PORT': 5432,
     }
 }

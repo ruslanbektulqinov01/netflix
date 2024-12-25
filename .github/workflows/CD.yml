@@ -1,7 +1,7 @@
 name: Django CD
 
 on:
-  push:
+  pus:
     branches: [ main ]
   pull_request:
     branches: [ main ]
